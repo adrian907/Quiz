@@ -1,0 +1,133 @@
+1. When does Exceptions in Java arises in code sequence?
+<<<<<
+a) Run Time
+b) Compilation Time
+c) Can Occur Any Time
+d) None of the mentioned
+2. Which of these keywords is not a part of exception handling?
+<<<<<
+a) try
+b) finally
+c) thrown
+d) catch
+3. Which of these keywords must be used to monitor for exceptions?
+<<<<<
+a) try
+b) finally
+c) throw
+d) catch
+4. Which of these keywords must be used to handle the exception thrown by try block in some rational manner?
+<<<<<
+a) try
+b) finally
+c) throw
+d) catch
+5. Which of these keywords is used to manually throw an exception?
+<<<<<
+a) try
+b) finally
+c) throw
+d) catch
+6. What is the output of this program?
+
+    class exception_handling {
+        public static void main(String args[]) {
+            try {
+                System.out.print("Hello" + " " + 1 / 0);
+            }
+            catch(ArithmeticException e) {
+        	System.out.print("World");        	
+            }
+        }
+    }
+<<<<<
+a) Hello
+b) World
+c) HelloWorld
+d) Hello World
+View Answer
+7. What is the output of this program?
+
+    class exception_handling {
+        public static void main(String args[]) {
+            try {
+                int a, b;
+                b = 0;
+                a = 5 / b;
+                System.out.print("A");
+            }
+            catch(ArithmeticException e) {
+        	System.out.print("B");        	
+            }
+        }
+    }
+<<<<<
+a) A
+b) B
+c) Compilation Error
+d) Runtime Error
+8. What is the output of this program?
+
+    class exception_handling {
+        public static void main(String args[]) {
+            try {
+                int a, b;
+                b = 0;
+                a = 5 / b;
+                System.out.print("A");
+            }
+            catch(ArithmeticException e) {
+        	System.out.print("B");        	
+            }
+            finally {
+    	        System.out.print("C");
+            }
+        }
+    }
+<<<<<
+a) A
+b) B
+c) AC
+d) BC
+9. What is the output of this program?
+    class exception_handling {
+        public static void main(String args[]) {
+            try {
+                int i, sum;
+                sum = 10;
+                for (i = -1; i < 3 ;++i)
+                    sum = (sum / i);
+            }
+            catch(ArithmeticException e) {
+        	System.out.print("0");        	
+            } 
+            System.out.print(sum);
+        }
+    }
+<<<<<
+a) 0
+b) 05
+c) Compilation Error
+d) Runtime Error
+10. What is the output of this program?
+
+    class exception_handling {
+        public static void main(String args[]) {
+            try {
+                int i, sum;
+                sum = 10;
+                for (i = -1; i < 3 ;++i) {
+                    sum = (sum / i);
+                System.out.print(i);
+                }
+            }
+            catch(ArithmeticException e) {     	
+                System.out.print("0");
+            }
+        }
+    }
+<<<<<
+a) -1
+b) 0
+c) -10
+d) -101

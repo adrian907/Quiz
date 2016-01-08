@@ -1,0 +1,99 @@
+1. What does AWT stands for?
+<<<<<
+a) All Window Tools
+b) All Writing Tools
+c) Abstract Window Toolkit
+d) Abstract Writing Toolkit
+2. Which of these is used to perform all input & output operations in Java?
+<<<<<
+a) streams
+b) Variables
+c) classes
+d) Methods
+3. Which of these is a type of stream in Java?
+<<<<<
+a) Integer stream
+b) Short stream
+c) Byte stream
+d) Long stream
+4. Which of these classes are used by Byte streams for input and output operation?
+<<<<<
+a) InputStream
+b) InputOutputStream
+c) Reader
+d) All of the mentioned
+5. Which of these classes are used by character streams for input and output operations?
+<<<<<
+a) InputStream
+b) Writer
+c) ReadStream
+d) InputOutputStream
+6. Which of these class is used to read from byte array?
+<<<<<
+a) InputStream.
+b) BufferedInputStream.
+c) ArrayInputStream.
+d) ByteArrayInputStream.
+7. What is the output of this program if input given is ‘abcqfghqbcd’?
+
+    class Input_Output {
+        public static void main(String args[]) throws IOException {	 
+            char c;
+            BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
+            do {
+                c = (char) obj.read();
+	        System.out.print(c);
+            } while(c != 'q');
+        }
+    }
+<<<<<
+a) abcqfgh
+b) abc
+c) abcq
+d) abcqfghq
+8. What is the output of this program if input given is “abc’def/’egh”?
+
+    class Input_Output {
+        public static void main(String args[]) throws IOException {	 
+            char c;
+            BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
+            do {
+                c = (char) obj.read();
+	        System.out.print(c);
+            } while(c!='\'');
+        }
+    }
+<<<<<
+a) abc’
+b) abcdef/’
+c) abc’def/’egh
+d) abcqfghq
+9. What is the output of this program?
+
+    class output {
+        public static void main(String args[])
+        { 
+             StringBuffer c = new StringBuffer("Hello");
+             System.out.println(c.length());
+        }
+    }
+<<<<<
+a) 4
+b) 5
+c) 6
+d) 7
+10. What is the output of this program?
+
+    class output {
+        public static void main(String args[])
+        { 
+           StringBuffer s1 = new StringBuffer("Hello");
+           StringBuffer s2 = s1.reverse();
+           System.out.println(s2);
+        }
+    }
+<<<<<
+a) Hello
+b) olleH
+c) HelloolleH
+d) olleHHello

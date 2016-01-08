@@ -1,0 +1,138 @@
+1. Which of these access specifiers must be used for main() method?
+<<<<
+a) private
+b) public
+c) protected
+d) None of the mentioned
+2. Which of these is used to access member of class before object of that class is created?
+<<<<
+a) public
+b) private
+c) static
+d) protected
+3. Which of these is used as default for a member of a class if no access specifier is used for it?
+<<<<
+a) private
+b) public
+c) public, within its own package
+d) protected
+4. What is the process by which we can control what parts of a program can access the members of a class?
+<<<<
+a) Polymorphism
+b) Abstraction
+c) Encapsulation
+d) Recursion
+5. Which of the following statements are incorrect?
+<<<<
+a) public members of class can be accessed by any code in the program.
+b) private members of class can only be accessed by other members of the class.
+c) private members of class can be inherited by a sub class, and become protected members in sub class.
+d) protected members of a class can be inherited by a sub class, and become private members of the sub class.
+6. What is the output of this program?
+
+    class access{
+        public int x;
+ 	private int y;
+        void cal(int a, int b){
+            x =  a + 1;
+            y =  b;
+        }        
+    }    
+    class access_specifier {
+        public static void main(String args[])
+        {
+            access obj = new access();   
+            obj.cal(2, 3);
+            System.out.println(obj.x + " " + obj.y);     
+        }
+   }
+<<<<
+a) 3 3
+b) 2 3
+c) Runtime Error
+d) Compilation Error
+7. What is the output of this program?
+
+    class access{
+        public int x;
+ 	private int y;
+        void cal(int a, int b){
+            x =  a + 1;
+            y =  b;
+        }   
+        void print() {
+            system.out.println(" " + y);     
+        } 
+    }   
+    class access_specifier {
+        public static void main(String args[])
+        {
+            access obj = new access();   
+            obj.cal(2, 3);
+            System.out.println(obj.x);
+            obj.print();     
+        }
+   }
+<<<<
+a) 2 3
+b) 3 3
+c) Runtime Error
+d) Compilation Error
+8. What is the output of this program?
+
+    class static_out {
+        static int x;
+ 	static int y;
+        void add(int a, int b){
+            x = a + b;
+            y = x + b;
+        }
+    }    
+    class static_use {
+        public static void main(String args[])
+        {
+            static_out obj1 = new static_out();
+            static_out obj2 = new static_out();   
+            int a = 2;
+            obj1.add(a, a + 1);
+            obj2.add(5, a);
+            System.out.println(obj1.x + " " + obj2.y);     
+        }
+   }
+<<<<
+a) 7 7
+b) 6 6
+c) 7 9
+d) 9 7
+9. Which of these access specifier must be used for class so that it can be inherited by another sub class?
+<<<<
+a) public
+b) private
+c) protected
+d) None of the mentioned
+10. What is the output of this program?
+
+    class test {
+        int a;
+        int b;
+        test(int i, int j) {
+            a = i;
+            b = j;
+        }
+        void meth(test o) {
+            o.a *= 2;
+            O.b /= 2;
+        }          
+    }    
+    class Output {
+        public static void main(String args[])
+        {
+            test obj = new test(10 , 20);
+            obj.meth(obj);
+            System.out.println(obj.a + " " + obj.b);        } 
+    }
+<<<<
+a) 10 20
+b) 20 10
+c) 20 40
+d) 40 20

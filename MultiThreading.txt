@@ -1,0 +1,88 @@
+1. What is multithreaded programming?
+<<<<<
+a) It’s a process in which two different processes run simultaneously.
+b) It’s a process in which two or more parts of same process run simultaneously.
+c) Its a process in which many different process are able to access same information.
+d) Its a process in which a single process can access information from many sources.
+2. Which of these are types of multitasking?
+<<<<<
+a) Process based
+b) Thread based
+c) Process and Thread based
+d) None of the mentioned
+3. Which of these packages contain all the Java’s built in exceptions?
+<<<<<
+a) java.io
+b) java.util
+c) java.lang
+d) java.net
+4. Thread priority in Java is?
+<<<<<
+a) Integer
+b) Float
+c) double
+d) long
+5. What will happen if two thread of same priority are called to be processed simultaneously?
+<<<<<
+a) Any one will be executed first lexographically
+b) Both of them will be executed simultaneously
+c) None of them will be executed
+d) It is dependent on the operating system.
+6. Which of these statements is incorrect?
+<<<<<
+a) By multithreading CPU’s idle time is minimized, and we can take maximum use of it.
+b) By multitasking CPU’s idle time is minimized, and we can take maximum use of it.
+c) Two thread in Java can have same priority
+d) A thread can exist only in two states, running and blocked.
+7. What is the output of this program?
+
+    class multithreaded_programing {
+        public static void main(String args[]) {
+            Thread t = Thread.currentThread();
+            System.out.println(t);        
+        }
+    }
+<<<<<
+a) Thread[5,main] 
+b) Thread[main,5] 
+c) Thread[main,0] 
+d) Thread[main,5,main]
+8. What is the priority of the thread in output of this program?
+
+    class multithreaded_programing {
+        public static void main(String args[]) {
+            Thread t = Thread.currentThread();
+            System.out.println(t);        
+        }
+    }
+<<<<<
+a) 4
+b) 5
+c) 0
+d) 1
+9. What is the name of the thread in output of this program?
+
+    class multithreaded_programing {
+        public static void main(String args[]) {
+            Thread t = Thread.currentThread();
+            System.out.println(t);        
+        }
+    }
+<<<<<
+a) main
+b) Thread
+c) System
+d) None of the mentioned
+10. What is the name of the thread in output of this program?
+
+    class multithreaded_programing {
+        public static void main(String args[]) {
+            Thread t = Thread.currentThread();
+            System.out.println(t.isAlive());        
+        }
+    }
+<<<<<
+a) 0
+b) 1
+c) true
+d) false

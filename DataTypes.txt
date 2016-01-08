@@ -1,0 +1,107 @@
+1. What is the range of data type short in Java?
+<<<<<
+a) -128 to 127
+b) -32768 to 32767
+c) -2147483648 to 2147483647
+d) None of the mentioned
+2. What is the range of data type byte in Java?
+<<<<<
+a) -128 to 127
+b) -32768 to 32767
+c) -2147483648 to 2147483647
+d) None of the mentioned
+3.Which of the following are legal lines of Java code?
+1. int w = (int)888.8;
+2. byte x = (byte)100L;
+3. long y = (byte)100;
+4. byte z = (byte)100L;
+<<<<<
+a) 1 and 2
+b) 2 and 3
+c) 3 and 4
+d) All statements are correct.
+4. An expression involving byte, int, and literal numbers is promoted to which of these?
+<<<<<
+a) int
+b) long
+c) byte
+d) float
+5. Which of these literals can be contained in a data type float variable?
+<<<<<
+a) 1.7e-308
+b) 3.4e-038
+c) 1.7e+308
+d) 3.4e-050
+6. Which data type value is returned by all transcendental math functions?
+<<<<<
+a) int
+b) float
+c) double
+d) long
+7. What is the output of this program?
+
+    class average {
+        public static void main(String args[])
+        {
+            double num[] = {5.5, 10.1, 11, 12.8, 56.9, 2.5};
+            double result;
+            result = 0;
+            for (int i = 0; i < 6; ++i) 
+                result = result + num[i];
+	    System.out.print(result/6);
+ 
+        } 
+    }
+<<<<<
+a) 16.34
+b) 16.566666644
+c) 16.46666666666667
+d) 16.46666666666666
+8. What is the output of this program?
+
+    class conversion {
+        public static void main(String args[]) 
+        {    
+             double a = 295.04;
+             int  b = 300;
+             byte c = (byte) a;
+             byte d = (byte) b;
+             System.out.println(c + " "  + d);
+        } 
+    }
+<<<<<
+a) 38 43
+b) 39 44
+c) 295 300
+d) 295.04 300
+9. What is the output of this program?
+
+    class increment {
+        public static void main(String args[]) 
+        {        
+             int g = 3;
+             System.out.print(++g * 8);
+        } 
+    }
+<<<<<
+a) 25
+b) 24
+c) 32
+d) 33
+10. What is the output of this program?
+
+    class area {
+        public static void main(String args[]) 
+        {    
+             double r, pi, a;
+             r = 9.8;
+             pi = 3.14;
+             a = pi * r * r;
+             System.out.println(a);
+        } 
+    }
+<<<<<
+a) 301.5656
+b) 301
+c) 301.56
+d) 301.56560000
