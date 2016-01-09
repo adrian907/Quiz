@@ -4,11 +4,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -24,29 +22,23 @@ import javax.swing.SwingConstants;
 public class Windows {
 
 	private JFrame frame;
-	private JTextField nameTextField;
 	private JTextField txtX;
-	private String name;
-	private String[][] qpa;
-	private String[][] qca;
-	private HashMap<Integer, String> map;
+	private static String name;
 	private JLabel questionLabel;
 	private JRadioButton radioButton1;
 	private JRadioButton radioButton2;
 	private JRadioButton radioButton3;
 	private JRadioButton radioButton4;
 	private ButtonGroup bg;
-	static int qNumber = 0;
+	static int qNumber = 1;
 	private JComboBox comboBox;
 	private String[] comboString;
 	private String[][] questionArray;
-	// private int[] questionID;
-	private HashMap questionTypeID;
-	private Collection<Integer> questionID;
-
-	// JLabel lblmess;
-	// JButton btnext;
-	// int qaid;
+	private int[][] questionAnswers;
+	private int getSelectedArea;
+	private int[] userAnswers = new int[11];
+	static int answerCounter = 0;
+	private float totalScore=100;
 
 	/**
 	 * Launch the application.
@@ -76,8 +68,8 @@ public class Windows {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 460, 400);
-		frame.setLocation(430, 100);
+		frame.setBounds(100, 100, 700, 700);
+		frame.setLocation(325, 20);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
@@ -86,34 +78,15 @@ public class Windows {
 		JPanel panel_2 = new JPanel();
 		JPanel panel_3 = new JPanel();
 		JPanel panel_4 = new JPanel();
-		questionTypeID = new HashMap<String, Integer>();
-		questionTypeID.put("DatatTypes", 0);
-
-		questionID = questionTypeID.values();
 
 		frame.getContentPane().add(panel_1, "name_60267995453810");
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Witaj w programie JavaQuiz v2.2.");
-		lblNewLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 15));
-		lblNewLabel.setBounds(99, 11, 247, 38);
+		JLabel lblNewLabel = new JLabel("Welcome to the Java Quiz v2.4");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 27));
+		lblNewLabel.setBounds(102, 70, 501, 186);
 		panel_1.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("Wpisz swoje imie:");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Microsoft JhengHei", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(151, 60, 134, 14);
-		panel_1.add(lblNewLabel_1);
-
-		nameTextField = new JTextField();
-		nameTextField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				name = nameTextField.getText();
-			}
-		});
-		nameTextField.setBounds(151, 85, 134, 32);
-		panel_1.add(nameTextField);
-		nameTextField.setColumns(10);
 
 		// //////PANEL 2///////////
 		bg = new ButtonGroup();
@@ -121,19 +94,22 @@ public class Windows {
 
 		// ///////BUTTONS PANEL2/////////
 		radioButton1.setSelected(true);
-		radioButton1.setBounds(24, 134, 275, 23);
+		radioButton1.setBounds(21, 416, 275, 23);
 		panel_2.add(radioButton1);
 
-		JRadioButton radioButton2 = new JRadioButton("");
-		radioButton2.setBounds(24, 180, 275, 23);
+		radioButton2 = new JRadioButton("");
+
+		radioButton2.setBounds(21, 463, 275, 23);
 		panel_2.add(radioButton2);
 
-		JRadioButton radioButton3 = new JRadioButton("");
-		radioButton3.setBounds(24, 226, 275, 23);
+		radioButton3 = new JRadioButton("");
+
+		radioButton3.setBounds(21, 506, 275, 23);
 		panel_2.add(radioButton3);
 
-		JRadioButton radioButton4 = new JRadioButton("");
-		radioButton4.setBounds(24, 273, 275, 23);
+		radioButton4 = new JRadioButton("");
+
+		radioButton4.setBounds(21, 549, 275, 23);
 		panel_2.add(radioButton4);
 
 		// //////////////////////////////////////
@@ -144,35 +120,46 @@ public class Windows {
 		bg.add(radioButton3);
 		bg.add(radioButton4);
 
-		JButton startButton = new JButton("Rozpocznij Quiz!");
+		JButton startButton = new JButton("Start!");
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				getSelectedArea = comboBox.getSelectedIndex();
+				try {
+					questionTable(getSelectedArea + 1);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					System.out
+							.println("STh's wrong with creating question table.");
+				}
+				questionLabel.setText(questionArray[0][0]);
+				radioButton1.setText(questionArray[0][1]);
+				radioButton2.setText(questionArray[0][2]);
+				radioButton3.setText(questionArray[0][3]);
+				radioButton4.setText(questionArray[0][4]);
+
 				panel_1.setVisible(false);
 				panel_2.setVisible(true);
-				 name = nameTextField.getText();
-				 questionLabel.setText(qpa[qNumber][0]);
-				 radioButton1.setText(qpa[qNumber][1]);
-				 radioButton2.setText(qpa[qNumber][2]);
-				 radioButton3.setText(qpa[qNumber][3]);
-				 radioButton4.setText(qpa[qNumber][4]);
-				//assignLabels(1);
 			}
 		});
-		startButton.setBounds(151, 287, 134, 38);
+		startButton.setBounds(285, 502, 133, 53);
 		panel_1.add(startButton);
 
-		JLabel labelLevel = new JLabel("Wybierz dzia³:");
+		JLabel labelLevel = new JLabel("Choose section:");
 		labelLevel.setHorizontalAlignment(SwingConstants.CENTER);
 		labelLevel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 12));
-		labelLevel.setBounds(151, 157, 134, 14);
+		labelLevel.setBounds(285, 320, 134, 25);
 		panel_1.add(labelLevel);
 
 		// ///COMBO BOX PANEL 1 /////
 
 		comboBox = new JComboBox();
-		comboString = new String[] { "Strings", "Java Core", "Generics" };
+
+		comboString = new String[] { "AccessControle", "DataTypes",
+				"EventHandling", "Exceptions", "Inheritance", "InputOutput",
+				"LiteralsAndVariables", "MultiThreading" };
 		comboBox.setModel(new DefaultComboBoxModel(comboString));
-		comboBox.setBounds(173, 182, 93, 20);
+		comboBox.setBounds(285, 356, 134, 20);
 
 		// ////////////////////////////////
 		panel_1.add(comboBox);
@@ -180,47 +167,66 @@ public class Windows {
 		frame.getContentPane().add(panel_2, "name_60269580793189");
 		panel_2.setLayout(null);
 
-		questionLabel = new JLabel("");
+		questionLabel = new JLabel(
+				"asdadasdasdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		questionLabel.setVerticalAlignment(SwingConstants.TOP);
+		questionLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		questionLabel.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
-		questionLabel.setBounds(24, 22, 402, 78);
+		questionLabel.setBounds(21, 23, 627, 399);
+
 		panel_2.add(questionLabel);
 
 		JButton btnNextButton = new JButton("Next");
 		btnNextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				questionLabel.setText(qpa[qNumber + 1][0]);
-				radioButton1.setText(qpa[qNumber + 1][1]);
-				radioButton2.setText(qpa[qNumber + 1][2]);
-				radioButton3.setText(qpa[qNumber + 1][3]);
-				radioButton4.setText(qpa[qNumber + 1][4]);
+				questionLabel.setText(questionArray[qNumber][0]);
+				radioButton1.setText(questionArray[qNumber][1]);
+				radioButton2.setText(questionArray[qNumber][2]);
+				radioButton3.setText(questionArray[qNumber][3]);
+				radioButton4.setText(questionArray[qNumber][4]);
 
+				if (radioButton1.isSelected() == true)
+					userAnswers[answerCounter] = 1;
+				if (radioButton2.isSelected() == true)
+					userAnswers[answerCounter] = 2;
+				if (radioButton3.isSelected() == true)
+					userAnswers[answerCounter] = 3;
+				if (radioButton4.isSelected() == true)
+					userAnswers[answerCounter] = 4;
+
+				answerCounter++;
 				qNumber++;
-				if (qNumber == 9) {
+				if (qNumber == 10) {
 					panel_2.setVisible(false);
 					panel_3.setVisible(true);
-					qNumber = 0;
+					qNumber = 1;
+					answerCounter = 0;
+					getScore(getSelectedArea);
+				
+					totalScore = getScore(getSelectedArea);
 				}
+				radioButton1.setSelected(true);
 			}
 		});
-		btnNextButton.setBounds(317, 303, 109, 44);
+		btnNextButton.setBounds(555, 595, 109, 44);
 		panel_2.add(btnNextButton);
 
 		frame.getContentPane().add(panel_3, "name_65995676906472");
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("Gratulacje " + name
-				+ "! Tw\u00F3j wynik to : ");
+		JLabel lblNewLabel_2 = new JLabel("Gratulacje!");
+		lblNewLabel_2.setText("Congratulations !");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Microsoft JhengHei", Font.BOLD, 25));
-		lblNewLabel_2.setBounds(64, 36, 333, 32);
+		lblNewLabel_2.setBounds(168, 169, 354, 53);
 		panel_3.add(lblNewLabel_2);
 
 		txtX = new JTextField();
 		txtX.setFont(new Font("Sitka Text", Font.PLAIN, 30));
 		txtX.setHorizontalAlignment(SwingConstants.CENTER);
-		txtX.setText("x %");
-		txtX.setBounds(151, 100, 144, 51);
+		txtX.setText(totalScore + "%");
+		txtX.setBounds(234, 233, 221, 51);
 		panel_3.add(txtX);
 		txtX.setColumns(10);
 
@@ -229,208 +235,279 @@ public class Windows {
 			public void actionPerformed(ActionEvent e) {
 				panel_3.setVisible(false);
 				panel_4.setVisible(true);
+				
 			}
 		});
-		btnEnd.setBounds(174, 199, 101, 32);
+		btnEnd.setBounds(284, 363, 125, 43);
 		panel_3.add(btnEnd);
 
 		frame.getContentPane().add(panel_4, "name_67783736065234");
 		panel_4.setLayout(null);
 
-		JLabel lblCzyChceszPonowi = new JLabel(
-				"Czy chcesz spróbowac raz jeszcze? ");
+		JLabel lblCzyChceszPonowi = new JLabel("Do you want to try again?");
 		lblCzyChceszPonowi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCzyChceszPonowi
 				.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
-		lblCzyChceszPonowi.setBounds(38, 28, 354, 102);
+		lblCzyChceszPonowi.setBounds(175, 234, 354, 102);
 		panel_4.add(lblCzyChceszPonowi);
 
-		JButton btnNie = new JButton("Nie");
+		JButton btnNie = new JButton("No");
 		btnNie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 			}
 		});
-		btnNie.setBounds(243, 180, 101, 32);
+		btnNie.setBounds(361, 347, 101, 32);
 		panel_4.add(btnNie);
 
-		JButton btnTak = new JButton("Tak");
+		JButton btnTak = new JButton("Yes");
 		btnTak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_4.setVisible(false);
 				panel_1.setVisible(true);
 			}
 		});
-		btnTak.setBounds(89, 180, 101, 32);
+		btnTak.setBounds(207, 347, 101, 32);
 		panel_4.add(btnTak);
 
-		qpa = new String[10][5];
-
-		qpa[0][0] = "How to run Java program on the command prompt?";
-		qpa[0][1] = "javac JavaProgram";
-		qpa[0][2] = "java JavaProgram";
-		qpa[0][3] = "javac JavaProgram.java";
-		qpa[0][4] = "No one";
-
-		qpa[1][0] = "What is the use of the println method?";
-		qpa[1][1] = "It is used to print text on the screen.";
-		qpa[1][2] = "It is used to print text on the screen with the line break.";
-		qpa[1][3] = "It is used to read text from keyboard.";
-		qpa[1][4] = "It is used to read text from a file.";
-
-		qpa[2][0] = "How to read a character from the keyboard?";
-		qpa[2][1] = "char c=System.read()";
-		qpa[2][2] = "char c=System.in.read()";
-		qpa[2][3] = "char c=(char)System.read()";
-		qpa[2][4] = "char c=(char)System.in.read()";
-
-		qpa[3][0] = "Which one is a single-line comment?";
-		qpa[3][1] = "/...";
-		qpa[3][2] = "//...";
-		qpa[3][3] = "/*...";
-		qpa[3][4] = "/*...*/";
-
-		qpa[4][0] = "How do you declare an integer variable x?";
-		qpa[4][1] = "int x";
-		qpa[4][2] = "x as Integer";
-		qpa[4][3] = "Int[] x";
-		qpa[4][4] = "No one is correct.";
-
-		qpa[5][0] = "How do you convert a string of number to a number?";
-		qpa[5][1] = "int num=Integer.parseInt(str_num)";
-		qpa[5][2] = "int num=str_num.toInteger()";
-		qpa[5][3] = "int num=(int)str_num";
-		qpa[5][4] = "int num=(Integer)str_num";
-
-		qpa[6][0] = "What is the value of x? int x=3>>2";
-		qpa[6][1] = "1";
-		qpa[6][2] = "0";
-		qpa[6][3] = "3";
-		qpa[6][4] = "-3";
-
-		qpa[7][0] = "How to do exit a loop?";
-		qpa[7][1] = "Using exit";
-		qpa[7][2] = "Using break";
-		qpa[7][3] = "Using continue";
-		qpa[7][4] = "Using terminate";
-
-		qpa[8][0] = "What is the correct way to allocate one-dimensional array?";
-		qpa[8][1] = "int[size] arr=new int[]";
-		qpa[8][2] = "int arr[size]=new int[]";
-		qpa[8][3] = "int[size] arr=new int[size]";
-		qpa[8][4] = "int[] arr=new int[size]";
-
-		qpa[9][0] = "What is the correct way to allocate two-dimensional array?";
-		qpa[9][1] = "int[size][] arr=new int[][]";
-		qpa[9][2] = "int arr=new int[rows][cols]";
-		qpa[9][3] = "int arr[rows][]=new int[rows][cols]";
-		qpa[9][4] = "int[][] arr=new int[rows][cols]";
-
-		// qca stores pairs of question and its correct answer
-		qca = new String[10][2];
-
-		qca[0][0] = "How to run Java program on the command prompt?";
-		qca[0][1] = "java JavaProgram";
-
-		qca[1][0] = "What is the use of the println method?";
-		qca[1][1] = "It is used to print text on the screen with the line break.";
-
-		qca[2][0] = "How to read a character from the keyboard?";
-		qca[2][1] = "char c=(char)System.in.read()";
-
-		qca[3][0] = "Which one is a single-line comment?";
-		qca[3][1] = "//...";
-
-		qca[4][0] = "How do you declare an integer variable x?";
-		qca[4][1] = "int x";
-
-		qca[5][0] = "How do you convert a string of number to a number?";
-		qca[5][1] = "int num=Integer.parseInt(str_num)";
-
-		qca[6][0] = "What is the value of x? int x=3>>2";
-		qca[6][1] = "0";
-
-		qca[7][0] = "How to do exit a loop?";
-		qca[7][1] = "Using break";
-
-		qca[8][0] = "What is the correct way to allocate one-dimensional array?";
-		qca[8][1] = "int[] arr=new int[size]";
-
-		qca[9][0] = "What is the correct way to allocate two-dimensional array?";
-		qca[9][1] = "int[][] arr=new int[rows][cols]";
+		questionAnswers = new int[10][11];
+		questionAnswers[4][1] = 1;
+		questionAnswers[4][2] = 3;
+		questionAnswers[4][3] = 1;
+		questionAnswers[4][4] = 4;
+		questionAnswers[4][5] = 3;
+		questionAnswers[4][6] = 2;
+		questionAnswers[4][7] = 2;
+		questionAnswers[4][8] = 4;
+		questionAnswers[4][9] = 3;
+		questionAnswers[4][10] = 3;
 
 	}
 
-	public void assignLabels(int i) {
-		File file;
+	public String[][] questionTable(int i) throws FileNotFoundException {
+		StringBuilder sb;
+		String line;
+
+		questionArray = new String[10][5];
+
+		FileReader file = null;
+
 		switch (i) {
-		case 1: {
-			file = new File("DataTypes.txt");
+		case 1:
+			file = new FileReader("AccessControle.txt");
 			break;
-		}
-		case 2: {
-			file = new File("DataTypes.txt");
+		case 2:
+			file = new FileReader("DataTypes.txt");
 			break;
-		}
-		case 3: {
-			file = new File("DataTypes.txt");
+		case 3:
+			file = new FileReader("EventHandling.txt");
 			break;
-		}
-		case 4: {
-			file = new File("DataTypes.txt");
+		case 4:
+			file = new FileReader("Exceptions.txt");
 			break;
-		}
+		case 5:
+			file = new FileReader("Inheritance.txt");
+			break;
+		case 6:
+			file = new FileReader("InputOutput.txt");
+			break;
+		case 7:
+			file = new FileReader("LiteralsAndVariables.txt");
+			break;
+		case 8:
+			file = new FileReader("MultiThreading.txt");
+			break;
 
 		}
 
-//		try (BufferedReader br = new BufferedReader(new FileReader(
-//				"DataTypes.txt"))) {
-//			StringBuilder sb = new StringBuilder();
-//			String line = br.readLine();
-//
-//			while (!line.equals("<<<<<")) {
-//				sb.append(line);
-//				sb.append(System.lineSeparator());
-//				line = br.readLine();
-//			}
-//			questionLabel.setText(sb.toString());
-//
-//			radioButton1.setText(br.readLine());
-//			radioButton2.setText(br.readLine());
-//			radioButton3.setText(br.readLine());
-//			radioButton4.setText(br.readLine());
-//		} catch (IOException e) {
-//			System.out.println("Error");
-//		}
+		try (BufferedReader br = new BufferedReader(file)) {
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
 
-	}
-
-	public String[][] questionTable() {
-
-		questionArray = new String[10][4];
-		for (int i = 1; i < 10; i++) {
-			try (BufferedReader br = new BufferedReader(new FileReader(
-					"DataTypes.txt"))) {
-				StringBuilder sb = new StringBuilder();
-				String line = br.readLine();
-
-				while (!line.equals("<<<<<")) {
-					sb.append(line);
-					sb.append(System.lineSeparator());
-					line = br.readLine();
-				}
-				questionArray[i][0] = sb.toString();
-				questionArray[i][1] = br.readLine();
-				questionArray[i][2] = br.readLine();
-				questionArray[i][3] = br.readLine();
-				// questionArray[i][4] = ;
-
-			} catch (IOException e) {
-				System.out.println("Error");
 			}
+			sb.append("</html>");
+
+			questionArray[0][0] = sb.toString();
+			questionArray[0][1] = br.readLine();
+			questionArray[0][2] = br.readLine();
+			questionArray[0][3] = br.readLine();
+			questionArray[0][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+
+			questionArray[1][0] = sb.toString();
+			questionArray[1][1] = br.readLine();
+			questionArray[1][2] = br.readLine();
+			questionArray[1][3] = br.readLine();
+			questionArray[1][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[2][0] = sb.toString();
+			questionArray[2][1] = br.readLine();
+			questionArray[2][2] = br.readLine();
+			questionArray[2][3] = br.readLine();
+			questionArray[2][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[3][0] = sb.toString();
+			questionArray[3][1] = br.readLine();
+			questionArray[3][2] = br.readLine();
+			questionArray[3][3] = br.readLine();
+			questionArray[3][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[4][0] = sb.toString();
+			questionArray[4][1] = br.readLine();
+			questionArray[4][2] = br.readLine();
+			questionArray[4][3] = br.readLine();
+			questionArray[4][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[5][0] = sb.toString();
+			questionArray[5][1] = br.readLine();
+			questionArray[5][2] = br.readLine();
+			questionArray[5][3] = br.readLine();
+			questionArray[5][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[6][0] = sb.toString();
+			questionArray[6][1] = br.readLine();
+			questionArray[6][2] = br.readLine();
+			questionArray[6][3] = br.readLine();
+			questionArray[6][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[7][0] = sb.toString();
+			questionArray[7][1] = br.readLine();
+			questionArray[7][2] = br.readLine();
+			questionArray[7][3] = br.readLine();
+			questionArray[7][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[8][0] = sb.toString();
+			questionArray[8][1] = br.readLine();
+			questionArray[8][2] = br.readLine();
+			questionArray[8][3] = br.readLine();
+			questionArray[8][4] = br.readLine();
+
+			sb = new StringBuilder();
+			line = br.readLine();
+			sb.append("<html>");
+			while (!line.equals("<<<<<")) {
+				sb.append(line);
+				sb.append("<br>");
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+
+			}
+			sb.append("</html>");
+			questionArray[9][0] = sb.toString();
+			questionArray[9][1] = br.readLine();
+			questionArray[9][2] = br.readLine();
+			questionArray[9][3] = br.readLine();
+			questionArray[9][4] = br.readLine();
+
+		} catch (IOException e) {
+			System.out.println("Error");
 		}
 
 		return questionArray;
+	}
+
+	public float getScore(int j) {
+		int result = 0;
+		for (int i = 1; i < 10; i++) {
+			if (questionAnswers[4][i] -userAnswers[i]==0) {
+				result++;
+			}
+		}
+		return result;
 	}
 
 }

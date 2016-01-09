@@ -45,7 +45,6 @@ a) Hello
 b) World
 c) HelloWorld
 d) Hello World
-View Answer
 7. What is the output of this program?
 
     class exception_handling {
