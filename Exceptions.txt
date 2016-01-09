@@ -1,5 +1,6 @@
 1. When does Exceptions in Java arises in code sequence?
 <<<<<
+<<<
 a) Run Time
 b) Compilation Time
 c) Can Occur Any Time
@@ -8,10 +9,12 @@ d) None of the mentioned
 <<<<<
 a) try
 b) finally
+<<<
 c) thrown
 d) catch
 3. Which of these keywords must be used to monitor for exceptions?
 <<<<<
+<<<
 a) try
 b) finally
 c) throw
@@ -21,11 +24,13 @@ d) catch
 a) try
 b) finally
 c) throw
+<<<
 d) catch
 5. Which of these keywords is used to manually throw an exception?
 <<<<<
 a) try
 b) finally
+<<<
 c) throw
 d) catch
 6. What is the output of this program?
@@ -42,6 +47,7 @@ d) catch
     }
 <<<<<
 a) Hello
+<<<
 b) World
 c) HelloWorld
 d) Hello World
@@ -62,6 +68,7 @@ d) Hello World
     }
 <<<<<
 a) A
+<<<
 b) B
 c) Compilation Error
 d) Runtime Error
@@ -87,6 +94,7 @@ d) Runtime Error
 a) A
 b) B
 c) AC
+<<<
 d) BC
 9. What is the output of this program?
     class exception_handling {
@@ -106,6 +114,7 @@ d) BC
 <<<<<
 a) 0
 b) 05
+<<<
 c) Compilation Error
 d) Runtime Error
 10. What is the output of this program?
@@ -128,5 +137,6 @@ d) Runtime Error
 <<<<<
 a) -1
 b) 0
+<<<
 c) -10
 d) -101

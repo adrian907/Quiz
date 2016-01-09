@@ -38,7 +38,7 @@ public class Windows {
 	private int getSelectedArea;
 	private int[] userAnswers = new int[11];
 	static int answerCounter = 0;
-	private float totalScore=100;
+	private float totalScore = 100;
 
 	/**
 	 * Launch the application.
@@ -203,7 +203,7 @@ public class Windows {
 					qNumber = 1;
 					answerCounter = 0;
 					getScore(getSelectedArea);
-				
+
 					totalScore = getScore(getSelectedArea);
 				}
 				radioButton1.setSelected(true);
@@ -235,7 +235,7 @@ public class Windows {
 			public void actionPerformed(ActionEvent e) {
 				panel_3.setVisible(false);
 				panel_4.setVisible(true);
-				
+
 			}
 		});
 		btnEnd.setBounds(284, 363, 125, 43);
@@ -321,177 +321,54 @@ public class Windows {
 		}
 
 		try (BufferedReader br = new BufferedReader(file)) {
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
+			for (int j = 0; j < 10; j++) {
+				sb = new StringBuilder();
 				line = br.readLine();
+				sb.append("<html>");
+				while (!line.equals("<<<<<")) {
+					sb.append(line);
+					sb.append("<br>");
+					sb.append(System.lineSeparator());
+					line = br.readLine();
 
-			}
-			sb.append("</html>");
-
-			questionArray[0][0] = sb.toString();
-			questionArray[0][1] = br.readLine();
-			questionArray[0][2] = br.readLine();
-			questionArray[0][3] = br.readLine();
-			questionArray[0][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
+				}
+				sb.append("</html>");
+				
+				questionArray[j][0] = sb.toString();
+				
 				line = br.readLine();
-
-			}
-			sb.append("</html>");
-
-			questionArray[1][0] = sb.toString();
-			questionArray[1][1] = br.readLine();
-			questionArray[1][2] = br.readLine();
-			questionArray[1][3] = br.readLine();
-			questionArray[1][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
+				if(line.equals("<<<")){
+					questionArray[j][1] = br.readLine();
+					questionAnswers[i][j]=1;
+				}
+				else {
+					questionArray[j][1] = line;
+				}
 				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[2][0] = sb.toString();
-			questionArray[2][1] = br.readLine();
-			questionArray[2][2] = br.readLine();
-			questionArray[2][3] = br.readLine();
-			questionArray[2][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
+				if(line.equals("<<<")){
+					questionArray[j][2] = br.readLine();
+					questionAnswers[i][j]=2;
+				}
+				else {
+					questionArray[j][2] = line;
+				}
 				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[3][0] = sb.toString();
-			questionArray[3][1] = br.readLine();
-			questionArray[3][2] = br.readLine();
-			questionArray[3][3] = br.readLine();
-			questionArray[3][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
+				if(line.equals("<<<")){
+					questionArray[j][3] = br.readLine();
+					questionAnswers[i][j]=3;
+				}
+				else {
+					questionArray[j][3] = line;
+				}
 				line = br.readLine();
-
+				if(line.equals("<<<")){
+					questionArray[j][4] = br.readLine();
+					questionAnswers[i][j]=4;
+				}
+				else {
+					questionArray[j][4] = line;
+				}
 			}
-			sb.append("</html>");
-			questionArray[4][0] = sb.toString();
-			questionArray[4][1] = br.readLine();
-			questionArray[4][2] = br.readLine();
-			questionArray[4][3] = br.readLine();
-			questionArray[4][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[5][0] = sb.toString();
-			questionArray[5][1] = br.readLine();
-			questionArray[5][2] = br.readLine();
-			questionArray[5][3] = br.readLine();
-			questionArray[5][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[6][0] = sb.toString();
-			questionArray[6][1] = br.readLine();
-			questionArray[6][2] = br.readLine();
-			questionArray[6][3] = br.readLine();
-			questionArray[6][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[7][0] = sb.toString();
-			questionArray[7][1] = br.readLine();
-			questionArray[7][2] = br.readLine();
-			questionArray[7][3] = br.readLine();
-			questionArray[7][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[8][0] = sb.toString();
-			questionArray[8][1] = br.readLine();
-			questionArray[8][2] = br.readLine();
-			questionArray[8][3] = br.readLine();
-			questionArray[8][4] = br.readLine();
-
-			sb = new StringBuilder();
-			line = br.readLine();
-			sb.append("<html>");
-			while (!line.equals("<<<<<")) {
-				sb.append(line);
-				sb.append("<br>");
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-
-			}
-			sb.append("</html>");
-			questionArray[9][0] = sb.toString();
-			questionArray[9][1] = br.readLine();
-			questionArray[9][2] = br.readLine();
-			questionArray[9][3] = br.readLine();
-			questionArray[9][4] = br.readLine();
 
 		} catch (IOException e) {
 			System.out.println("Error");
@@ -503,7 +380,7 @@ public class Windows {
 	public float getScore(int j) {
 		int result = 0;
 		for (int i = 1; i < 10; i++) {
-			if (questionAnswers[4][i] -userAnswers[i]==0) {
+			if (questionAnswers[4][i] - userAnswers[i] == 0) {
 				result++;
 			}
 		}
