@@ -271,16 +271,6 @@ public class Windows {
 		panel_4.add(btnTak);
 
 		questionAnswers = new int[10][11];
-		questionAnswers[4][1] = 1;
-		questionAnswers[4][2] = 3;
-		questionAnswers[4][3] = 1;
-		questionAnswers[4][4] = 4;
-		questionAnswers[4][5] = 3;
-		questionAnswers[4][6] = 2;
-		questionAnswers[4][7] = 2;
-		questionAnswers[4][8] = 4;
-		questionAnswers[4][9] = 3;
-		questionAnswers[4][10] = 3;
 
 	}
 
@@ -333,40 +323,17 @@ public class Windows {
 
 				}
 				sb.append("</html>");
-				
+
 				questionArray[j][0] = sb.toString();
-				
-				line = br.readLine();
-				if(line.equals("<<<")){
-					questionArray[j][1] = br.readLine();
-					questionAnswers[i][j]=1;
-				}
-				else {
-					questionArray[j][1] = line;
-				}
-				line = br.readLine();
-				if(line.equals("<<<")){
-					questionArray[j][2] = br.readLine();
-					questionAnswers[i][j]=2;
-				}
-				else {
-					questionArray[j][2] = line;
-				}
-				line = br.readLine();
-				if(line.equals("<<<")){
-					questionArray[j][3] = br.readLine();
-					questionAnswers[i][j]=3;
-				}
-				else {
-					questionArray[j][3] = line;
-				}
-				line = br.readLine();
-				if(line.equals("<<<")){
-					questionArray[j][4] = br.readLine();
-					questionAnswers[i][j]=4;
-				}
-				else {
-					questionArray[j][4] = line;
+
+				for (int k = 1; k < 5; k++) {
+					line = br.readLine();
+					if (line.equals("<<<")) {
+						questionArray[j][k] = br.readLine();
+						questionAnswers[i][j] = k;
+					} else {
+						questionArray[j][k] = line;
+					}
 				}
 			}
 
