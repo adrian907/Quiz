@@ -18,31 +18,28 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
 
 public class Windows {
 
 	private JFrame frame;
-	private JTextField txtX;
-	private static String name;
+	private JTextField scoreText;
 	private JLabel questionLabel;
 	private JRadioButton radioButton1;
 	private JRadioButton radioButton2;
 	private JRadioButton radioButton3;
 	private JRadioButton radioButton4;
-	private ButtonGroup bg;
-	static int qNumber = 1;
+	private ButtonGroup buttonGroup;
+	private int qNumber = 1;
 	private JComboBox comboBox;
 	private String[] comboString;
 	private String[][] questionArray;
 	private int[][] questionAnswers;
 	private int getSelectedArea;
 	private int[] userAnswers = new int[11];
-	static int answerCounter = 0;
-	private float totalScore = 100;
+	private int answerCounter = 0;
+	private float totalScore = 0;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,16 +53,10 @@ public class Windows {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Windows() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 700);
@@ -73,6 +64,8 @@ public class Windows {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
+
+		questionAnswers = new int[10][11];
 
 		JPanel panel_1 = new JPanel();
 		JPanel panel_2 = new JPanel();
@@ -82,43 +75,41 @@ public class Windows {
 		frame.getContentPane().add(panel_1, "name_60267995453810");
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Welcome to the Java Quiz v2.4");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 27));
-		lblNewLabel.setBounds(102, 70, 501, 186);
-		panel_1.add(lblNewLabel);
+		// ////////////PANEL 1 - LABEL WELCOME ////////////////////////
 
-		// //////PANEL 2///////////
-		bg = new ButtonGroup();
+		JLabel lblWelcome = new JLabel("Welcome to the Java Quiz v2.4");
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setFont(new Font("Microsoft JhengHei", Font.BOLD, 27));
+		lblWelcome.setBounds(102, 70, 501, 186);
+		panel_1.add(lblWelcome);
+
+		// //////////////// BUTTONS PANEL2//////////////////////////
+
+		buttonGroup = new ButtonGroup();
+
 		radioButton1 = new JRadioButton("");
-
-		// ///////BUTTONS PANEL2/////////
 		radioButton1.setSelected(true);
 		radioButton1.setBounds(21, 416, 275, 23);
 		panel_2.add(radioButton1);
 
 		radioButton2 = new JRadioButton("");
-
 		radioButton2.setBounds(21, 463, 275, 23);
 		panel_2.add(radioButton2);
 
 		radioButton3 = new JRadioButton("");
-
 		radioButton3.setBounds(21, 506, 275, 23);
 		panel_2.add(radioButton3);
 
 		radioButton4 = new JRadioButton("");
-
 		radioButton4.setBounds(21, 549, 275, 23);
 		panel_2.add(radioButton4);
 
-		// //////////////////////////////////////
+		buttonGroup.add(radioButton1);
+		buttonGroup.add(radioButton2);
+		buttonGroup.add(radioButton3);
+		buttonGroup.add(radioButton4);
 
-		bg.add(radioButton1);// This allows only one of the buttons to be
-								// clicked
-		bg.add(radioButton2);
-		bg.add(radioButton3);
-		bg.add(radioButton4);
+		// ///////////// PANEL 1 - START BUTTON ///////////////////////////
 
 		JButton startButton = new JButton("Start!");
 		startButton.addActionListener(new ActionListener() {
@@ -145,13 +136,13 @@ public class Windows {
 		startButton.setBounds(285, 502, 133, 53);
 		panel_1.add(startButton);
 
-		JLabel labelLevel = new JLabel("Choose section:");
-		labelLevel.setHorizontalAlignment(SwingConstants.CENTER);
-		labelLevel.setFont(new Font("Microsoft JhengHei", Font.BOLD, 12));
-		labelLevel.setBounds(285, 320, 134, 25);
-		panel_1.add(labelLevel);
+		JLabel labelSection = new JLabel("Choose section:");
+		labelSection.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSection.setFont(new Font("Microsoft JhengHei", Font.BOLD, 12));
+		labelSection.setBounds(285, 320, 134, 25);
+		panel_1.add(labelSection);
 
-		// ///COMBO BOX PANEL 1 /////
+		// ////////////////////COMBO BOX PANEL 1 //////////////////////////
 
 		comboBox = new JComboBox();
 
@@ -161,20 +152,24 @@ public class Windows {
 		comboBox.setModel(new DefaultComboBoxModel(comboString));
 		comboBox.setBounds(285, 356, 134, 20);
 
-		// ////////////////////////////////
 		panel_1.add(comboBox);
+
+		// //////////////////////PANEL 2 ////////////////////////////////
 
 		frame.getContentPane().add(panel_2, "name_60269580793189");
 		panel_2.setLayout(null);
 
-		questionLabel = new JLabel(
-				"asdadasdasdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		// ///////////// PANEL 2 - QUESTION LABEL ///////////////////
+
+		questionLabel = new JLabel();
 		questionLabel.setVerticalAlignment(SwingConstants.TOP);
 		questionLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		questionLabel.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
-		questionLabel.setBounds(21, 23, 627, 399);
+		questionLabel.setBounds(43, 23, 621, 399);
 
 		panel_2.add(questionLabel);
+
+		// ///////////////// PANEL 2 - NEXT BUTTON////////////////////////
 
 		JButton btnNextButton = new JButton("Next");
 		btnNextButton.addActionListener(new ActionListener() {
@@ -203,8 +198,10 @@ public class Windows {
 					qNumber = 1;
 					answerCounter = 0;
 					getScore(getSelectedArea);
-
 					totalScore = getScore(getSelectedArea);
+					String txt="";
+					txt+=totalScore;
+					scoreText.setText(txt);
 				}
 				radioButton1.setSelected(true);
 			}
@@ -212,65 +209,78 @@ public class Windows {
 		btnNextButton.setBounds(555, 595, 109, 44);
 		panel_2.add(btnNextButton);
 
+		// //////////////////////// PANEL 3 //////////////////////////
+
 		frame.getContentPane().add(panel_3, "name_65995676906472");
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("Gratulacje!");
-		lblNewLabel_2.setText("Congratulations !");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Microsoft JhengHei", Font.BOLD, 25));
-		lblNewLabel_2.setBounds(168, 169, 354, 53);
-		panel_3.add(lblNewLabel_2);
+		// //////////// PANEL 3 - LABEL CONGRATULATIONS ///////////////
+		JLabel lblCongratulations = new JLabel("Gratulacje!");
+		lblCongratulations.setText("Congratulations !");
+		lblCongratulations.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCongratulations
+				.setFont(new Font("Microsoft JhengHei", Font.BOLD, 25));
+		lblCongratulations.setBounds(168, 169, 354, 53);
+		panel_3.add(lblCongratulations);
 
-		txtX = new JTextField();
-		txtX.setFont(new Font("Sitka Text", Font.PLAIN, 30));
-		txtX.setHorizontalAlignment(SwingConstants.CENTER);
-		txtX.setText(totalScore + "%");
-		txtX.setBounds(234, 233, 221, 51);
-		panel_3.add(txtX);
-		txtX.setColumns(10);
+		// /////////////PANEL 3 - SCORETEXT ////////////////////////
 
-		JButton btnEnd = new JButton("OK");
-		btnEnd.addActionListener(new ActionListener() {
+		scoreText = new JTextField();
+		scoreText.setFont(new Font("Sitka Text", Font.PLAIN, 30));
+		scoreText.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(scoreText);
+		scoreText.setBounds(253, 301, 187, 51);
+		scoreText.setColumns(10);
+		
+
+		// ////////////////PANEL 3 BUTTON OK ////////////////////////
+		JButton btnOK = new JButton("OK");
+		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_3.setVisible(false);
 				panel_4.setVisible(true);
-
 			}
 		});
-		btnEnd.setBounds(284, 363, 125, 43);
-		panel_3.add(btnEnd);
+		btnOK.setBounds(284, 363, 125, 43);
+		panel_3.add(btnOK);
+
+		// //////////////////////////PANEL 4 //////////////////////
 
 		frame.getContentPane().add(panel_4, "name_67783736065234");
 		panel_4.setLayout(null);
 
-		JLabel lblCzyChceszPonowi = new JLabel("Do you want to try again?");
-		lblCzyChceszPonowi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCzyChceszPonowi
-				.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
-		lblCzyChceszPonowi.setBounds(175, 234, 354, 102);
-		panel_4.add(lblCzyChceszPonowi);
+		// ///////////////// PANEL 4 - LABEL TRY AGAIN ////////////
 
-		JButton btnNie = new JButton("No");
-		btnNie.addActionListener(new ActionListener() {
+		JLabel lblTryAgain = new JLabel("Do you want to try again?");
+		lblTryAgain.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTryAgain.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
+		lblTryAgain.setBounds(176, 197, 354, 102);
+		panel_4.add(lblTryAgain);
+
+		// //////////////// PANEL 4 - BUTTON NO////////////////////
+
+		JButton btnNo = new JButton("No");
+		btnNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 			}
 		});
-		btnNie.setBounds(361, 347, 101, 32);
-		panel_4.add(btnNie);
+		btnNo.setBounds(362, 310, 101, 32);
+		panel_4.add(btnNo);
 
-		JButton btnTak = new JButton("Yes");
-		btnTak.addActionListener(new ActionListener() {
+		// ////////////// PANEL 4 - BUTTON YES ///////////////////////
+
+		JButton btnYes = new JButton("Yes");
+		btnYes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_4.setVisible(false);
 				panel_1.setVisible(true);
 			}
 		});
-		btnTak.setBounds(207, 347, 101, 32);
-		panel_4.add(btnTak);
+		btnYes.setBounds(208, 310, 101, 32);
+		panel_4.add(btnYes);
 
-		questionAnswers = new int[10][11];
+		// ///////////////////////////////////////////////////////////
 
 	}
 
@@ -353,5 +363,4 @@ public class Windows {
 		}
 		return result;
 	}
-
 }

@@ -1,31 +1,36 @@
 1. Which of these access specifiers must be used for main() method?
-<<<<
+<<<<<
 a) private
+<<<
 b) public
 c) protected
 d) None of the mentioned
 2. Which of these is used to access member of class before object of that class is created?
-<<<<
+<<<<<
 a) public
 b) private
+<<<
 c) static
 d) protected
 3. Which of these is used as default for a member of a class if no access specifier is used for it?
-<<<<
+<<<<<
+<<<
 a) private
 b) public
 c) public, within its own package
 d) protected
 4. What is the process by which we can control what parts of a program can access the members of a class?
-<<<<
+<<<<<
 a) Polymorphism
 b) Abstraction
+<<<
 c) Encapsulation
 d) Recursion
 5. Which of the following statements are incorrect?
-<<<<
+<<<<<
 a) public members of class can be accessed by any code in the program.
 b) private members of class can only be accessed by other members of the class.
+<<<
 c) private members of class can be inherited by a sub class, and become protected members in sub class.
 d) protected members of a class can be inherited by a sub class, and become private members of the sub class.
 6. What is the output of this program?
@@ -46,9 +51,10 @@ d) protected members of a class can be inherited by a sub class, and become priv
             System.out.println(obj.x + " " + obj.y);     
         }
    }
-<<<<
+<<<<<
 a) 3 3
 b) 2 3
+<<<
 c) Runtime Error
 d) Compilation Error
 7. What is the output of this program?
@@ -73,8 +79,9 @@ d) Compilation Error
             obj.print();     
         }
    }
-<<<<
+<<<<<
 a) 2 3
+<<<
 b) 3 3
 c) Runtime Error
 d) Compilation Error
@@ -99,13 +106,15 @@ d) Compilation Error
             System.out.println(obj1.x + " " + obj2.y);     
         }
    }
-<<<<
+<<<<<
 a) 7 7
 b) 6 6
+<<<
 c) 7 9
 d) 9 7
 9. Which of these access specifier must be used for class so that it can be inherited by another sub class?
-<<<<
+<<<<<
+<<<
 a) public
 b) private
 c) protected
@@ -131,8 +140,9 @@ d) None of the mentioned
             obj.meth(obj);
             System.out.println(obj.a + " " + obj.b);        } 
     }
-<<<<
+<<<<<
 a) 10 20
+<<<
 b) 20 10
 c) 20 40
 d) 40 20

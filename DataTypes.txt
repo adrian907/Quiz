@@ -1,11 +1,13 @@
 1. What is the range of data type short in Java?
 <<<<<
 a) -128 to 127
+<<<
 b) -32768 to 32767
 c) -2147483648 to 2147483647
 d) None of the mentioned
 2. What is the range of data type byte in Java?
 <<<<<
+<<<
 a) -128 to 127
 b) -32768 to 32767
 c) -2147483648 to 2147483647
@@ -19,9 +21,11 @@ d) None of the mentioned
 a) 1 and 2
 b) 2 and 3
 c) 3 and 4
+<<<
 d) All statements are correct.
 4. An expression involving byte, int, and literal numbers is promoted to which of these?
 <<<<<
+<<<
 a) int
 b) long
 c) byte
@@ -29,6 +33,7 @@ d) float
 5. Which of these literals can be contained in a data type float variable?
 <<<<<
 a) 1.7e-308
+<<<
 b) 3.4e-038
 c) 1.7e+308
 d) 3.4e-050
@@ -36,6 +41,7 @@ d) 3.4e-050
 <<<<<
 a) int
 b) float
+<<<
 c) double
 d) long
 7. What is the output of this program?
@@ -55,6 +61,7 @@ d) long
 <<<<<
 a) 16.34
 b) 16.566666644
+<<<
 c) 16.46666666666667
 d) 16.46666666666666
 8. What is the output of this program?
@@ -71,6 +78,7 @@ d) 16.46666666666666
     }
 <<<<<
 a) 38 43
+<<<
 b) 39 44
 c) 295 300
 d) 295.04 300
@@ -86,6 +94,7 @@ d) 295.04 300
 <<<<<
 a) 25
 b) 24
+<<<
 c) 32
 d) 33
 10. What is the output of this program?
@@ -101,6 +110,7 @@ d) 33
         } 
     }
 <<<<<
+<<<
 a) 301.5656
 b) 301
 c) 301.56

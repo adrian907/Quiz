@@ -3,16 +3,19 @@
 a) super
 b) this
 c) extent
+<<<
 d) extends
 2. Which of these keywords is used to refer to member of base class from a sub class?
 <<<<<
 a) upper
+<<<
 b) super
 c) this
 d) None of the mentioned
 3. A class member declared protected becomes member of subclass of which type?
 <<<<<
 a) public member
+<<<
 b) private member
 c) protected member
 d) static member
@@ -20,12 +23,14 @@ d) static member
 <<<<<
 a) class B + class A {}
 b) class B inherits class A {}
+<<<
 c) class B extends A {}
 d) class B extends class A {}
 5. Which of the following statements are incorrect?
 <<<<<
 a) public members of class can be accessed by any code in the program.
 b) private members of class can only be accessed by other members of the class.
+<<<
 c) private members of class can be inherited by a sub class, and become protected members in sub class.
 d) protected members of a class can be inherited by a sub class, and become private members of the sub class.
 6. What is the output of this program?
@@ -54,6 +59,7 @@ d) protected members of a class can be inherited by a sub class, and become priv
 <<<<<
 a) 0
 b) 1
+<<<
 c) 2
 d) Compilation Error
 7. What is the output of this program?
@@ -80,6 +86,7 @@ d) Compilation Error
 <<<<<
 a) 2 2
 b) 3 3
+<<<
 c) 2 3
 d) 3 2
 8. What is the output of this program?
@@ -107,6 +114,7 @@ d) 3 2
 a) 2 2
 b) 3 3
 c) Runtime Error
+<<<
 d) Compilation Error
 9. What is the output of this program?
 
@@ -132,6 +140,7 @@ d) Compilation Error
         }
    }
 <<<<<
+<<<
 a) 1 2
 b) 2 1
 c) Runtime Error
@@ -159,6 +168,7 @@ d) Compilation Error
         }
    }
 <<<<<
+<<<
 a) 1 2
 b) 2 1
 c) 1 3
