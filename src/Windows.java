@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
 
 public class Windows {
 
@@ -89,19 +88,19 @@ public class Windows {
 
 		radioButton1 = new JRadioButton("");
 		radioButton1.setSelected(true);
-		radioButton1.setBounds(21, 416, 275, 23);
+		radioButton1.setBounds(21, 416, 643, 23);
 		panel_2.add(radioButton1);
 
 		radioButton2 = new JRadioButton("");
-		radioButton2.setBounds(21, 463, 275, 23);
+		radioButton2.setBounds(21, 463, 643, 23);
 		panel_2.add(radioButton2);
 
 		radioButton3 = new JRadioButton("");
-		radioButton3.setBounds(21, 506, 275, 23);
+		radioButton3.setBounds(21, 506, 643, 23);
 		panel_2.add(radioButton3);
 
 		radioButton4 = new JRadioButton("");
-		radioButton4.setBounds(21, 549, 275, 23);
+		radioButton4.setBounds(21, 549, 643, 23);
 		panel_2.add(radioButton4);
 
 		buttonGroup.add(radioButton1);
