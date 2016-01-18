@@ -145,9 +145,9 @@ public class Windows {
 
 		comboBox = new JComboBox();
 
-		comboString = new String[] { "AccessControle", "DataTypes",
-				"EventHandling", "Exceptions", "Inheritance", "InputOutput",
-				"LiteralsAndVariables", "MultiThreading" };
+		comboString = new String[] { "AccessControle","Arrays","Collections", "DataTypes",
+				"EventHandling", "Exceptions", "InputOutput",
+				"LiteralsAndVariables", "MultiThreading", "Maps" };
 		comboBox.setModel(new DefaultComboBoxModel(comboString));
 		comboBox.setBounds(285, 356, 134, 20);
 
@@ -164,7 +164,7 @@ public class Windows {
 		questionLabel.setVerticalAlignment(SwingConstants.TOP);
 		questionLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		questionLabel.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
-		questionLabel.setBounds(43, 23, 621, 399);
+		questionLabel.setBounds(21, 23, 643, 399);
 
 		panel_2.add(questionLabel);
 
@@ -196,10 +196,9 @@ public class Windows {
 					panel_3.setVisible(true);
 					qNumber = 1;
 					answerCounter = 0;
-					getScore(getSelectedArea);
-					totalScore = getScore(getSelectedArea);
-					String txt="";
-					txt+=totalScore;
+					totalScore = (getScore(getSelectedArea) / 9) * 100;
+
+					String txt = ""+ (int) totalScore + "%";
 					scoreText.setText(txt);
 				}
 				radioButton1.setSelected(true);
@@ -230,7 +229,6 @@ public class Windows {
 		panel_3.add(scoreText);
 		scoreText.setBounds(253, 301, 187, 51);
 		scoreText.setColumns(10);
-		
 
 		// ////////////////PANEL 3 BUTTON OK ////////////////////////
 		JButton btnOK = new JButton("OK");
@@ -240,8 +238,14 @@ public class Windows {
 				panel_4.setVisible(true);
 			}
 		});
-		btnOK.setBounds(284, 363, 125, 43);
+		btnOK.setBounds(288, 394, 125, 43);
 		panel_3.add(btnOK);
+
+		JLabel lblNewLabel = new JLabel("Your score is :");
+		lblNewLabel.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 20));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(253, 239, 187, 36);
+		panel_3.add(lblNewLabel);
 
 		// //////////////////////////PANEL 4 //////////////////////
 
@@ -296,25 +300,31 @@ public class Windows {
 			file = new FileReader("AccessControle.txt");
 			break;
 		case 2:
-			file = new FileReader("DataTypes.txt");
+			file = new FileReader("Arrays.txt");
 			break;
 		case 3:
-			file = new FileReader("EventHandling.txt");
+			file = new FileReader("Collections.txt");
 			break;
 		case 4:
-			file = new FileReader("Exceptions.txt");
+			file = new FileReader("DataTypes.txt");
 			break;
 		case 5:
-			file = new FileReader("Inheritance.txt");
+			file = new FileReader("EventHandling.txt");
 			break;
 		case 6:
-			file = new FileReader("InputOutput.txt");
+			file = new FileReader("Exceptions.txt");
 			break;
 		case 7:
-			file = new FileReader("LiteralsAndVariables.txt");
+			file = new FileReader("InputOutput.txt");
 			break;
 		case 8:
+			file = new FileReader("LiteralsAndVariables.txt");
+			break;
+		case 9:
 			file = new FileReader("MultiThreading.txt");
+			break;
+		case 10:
+			file = new FileReader("Maps.txt");
 			break;
 
 		}
@@ -356,7 +366,7 @@ public class Windows {
 	public float getScore(int j) {
 		int result = 0;
 		for (int i = 1; i < 10; i++) {
-			if (questionAnswers[4][i] - userAnswers[i] == 0) {
+			if (questionAnswers[j+1][i] - userAnswers[i] == 0) {
 				result++;
 			}
 		}
