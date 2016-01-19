@@ -145,8 +145,8 @@ public class Windows {
 
 		comboBox = new JComboBox();
 
-		comboString = new String[] { "AccessControle","Arrays","Collections", "DataTypes",
-				"EventHandling", "Exceptions", "InputOutput",
+		comboString = new String[] { "AccessControle", "Arrays", "Collections",
+				"DataTypes", "EventHandling", "Exceptions", "InputOutput",
 				"LiteralsAndVariables", "MultiThreading", "Maps" };
 		comboBox.setModel(new DefaultComboBoxModel(comboString));
 		comboBox.setBounds(285, 356, 134, 20);
@@ -198,7 +198,7 @@ public class Windows {
 					answerCounter = 0;
 					totalScore = (getScore(getSelectedArea) / 9) * 100;
 
-					String txt = ""+ (int) totalScore + "%";
+					String txt = "" + (int) totalScore + "%";
 					scoreText.setText(txt);
 				}
 				radioButton1.setSelected(true);
@@ -366,7 +366,7 @@ public class Windows {
 	public float getScore(int j) {
 		int result = 0;
 		for (int i = 1; i < 10; i++) {
-			if (questionAnswers[j+1][i] - userAnswers[i] == 0) {
+			if (questionAnswers[j + 1][i] - userAnswers[i] == 0) {
 				result++;
 			}
 		}

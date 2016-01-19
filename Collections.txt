@@ -1,0 +1,129 @@
+1. Which of these packages contain all the collection classes?
+<<<<<
+a) java.lang
+<<<
+b) java.util
+c) java.net
+d) java.awt
+2. Which of these classes is not part of Java’s collection framework?
+<<<<<
+a) Maps
+b) Array
+c) Stack
+<<<
+d) Queue
+3. Which of these interface is not a part of Java’s collection framework?
+<<<<<
+a) List
+b) Set
+c) SortedMap
+<<<
+d) SortedList
+4. Which of these methods deletes all the elements from invoking collection?
+<<<<<
+<<<
+a) clear()
+b) reset()
+c) delete()
+d) refresh()
+5. What is Collection in Java?
+<<<<<
+<<<
+a) A group of objects
+b) A group of classes
+c) A group of interfaces
+d) None of the mentioned
+6. What is the output of this program?
+
+    import java.util.*;
+    class Array {
+        public static void main(String args[]) {
+            int array[] = new int [5];
+            for (int i = 5; i > 0; i--)
+                array[5-i] = i;
+            Arrays.fill(array, 1, 4, 8);
+            for (int i = 0; i < 5 ; i++)
+                System.out.print(array[i]);
+        }
+    }
+<<<<<
+a) 12885
+b) 12845
+<<<
+c) 58881
+d) 54881
+7. What is the output of this program?
+
+    import java.util.*;
+    class vector {
+        public static void main(String args[]) {
+            Vector obj = new Vector(4,2);
+            obj.addElement(new Integer(3));
+            obj.addElement(new Integer(2));
+            obj.addElement(new Integer(5));
+            obj.removeAll(obj);
+            System.out.println(obj.isEmpty());
+        }
+    }
+<<<<<
+a) 0
+b) 1
+<<<
+c) true
+d) false
+8. What is the output of this program?
+
+    import java.util.*;
+    class stack {
+        public static void main(String args[]) {
+            Stack obj = new Stack();
+            obj.push(new Integer(3));
+            obj.push(new Integer(2));
+            obj.pop();
+            obj.push(new Integer(5));
+     	    System.out.println(obj);
+        }
+    }
+<<<<<
+<<<
+a) [3, 5] 
+b) [3, 2] 
+c) [3, 2, 5] 
+d) [3, 5, 2] 
+9. What is the output of this program?
+
+    import java.util.*;
+    class hashtable {
+        public static void main(String args[]) {
+            Hashtable obj = new Hashtable();
+            obj.put("A", new Integer(3));
+            obj.put("B", new Integer(2));
+            obj.put("C", new Integer(8));
+            obj.remove(new String("A"));
+            System.out.print(obj);
+        }
+    }
+<<<<<
+a) {C=8, B=2}
+<<<
+b) [C=8, B=2] 
+c) {A=3, C=8, B=2}
+d) [A=3, C=8, B=2]
+10. What is the output of this program?
+
+    import java.util.*;
+    class Bitset {
+        public static void main(String args[]) {
+            BitSet obj = new BitSet(5);
+            for (int i = 0; i < 5; ++i)
+                obj.set(i);
+            obj.clear(2);
+            System.out.print(obj);
+        }
+    }
+<<<<<
+<<<
+a) {0, 1, 3, 4}
+b) {0, 1, 2, 4}
+c) {0, 1, 2, 3, 4}
+d) {0, 0, 0, 3, 4}
